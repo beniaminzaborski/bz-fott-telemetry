@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BA24D459-DBA9-4BC7-8EF4-0526D3F041F5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{63A9F797-EA81-4035-ADA7-1F1AE7A413FE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bz.Fott.Telemetry.IntegrationAzFunctions", "src\Bz.Fott.Telemetry.IntegrationAzFunctions\Bz.Fott.Telemetry.IntegrationAzFunctions.csproj", "{DD51C4CB-A63D-4D17-935B-68353A1E4A4F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DD51C4CB-A63D-4D17-935B-68353A1E4A4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD51C4CB-A63D-4D17-935B-68353A1E4A4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD51C4CB-A63D-4D17-935B-68353A1E4A4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD51C4CB-A63D-4D17-935B-68353A1E4A4F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DD51C4CB-A63D-4D17-935B-68353A1E4A4F} = {BA24D459-DBA9-4BC7-8EF4-0526D3F041F5}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B8105525-880D-46ED-A693-2A52F5655743}
+	EndGlobalSection
+EndGlobal
