@@ -9,6 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{63A9F797-E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bz.Fott.Telemetry.IntegrationAzFunctions", "src\Bz.Fott.Telemetry.IntegrationAzFunctions\Bz.Fott.Telemetry.IntegrationAzFunctions.csproj", "{DD51C4CB-A63D-4D17-935B-68353A1E4A4F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{5B0BE5B3-CE46-4AA8-A8BD-9596A1549A0F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{901D7A26-4B78-4663-83FF-83C3CC276299}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build-and-deploy-integration-functionapp.yml = .github\workflows\build-and-deploy-integration-functionapp.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +32,8 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{DD51C4CB-A63D-4D17-935B-68353A1E4A4F} = {BA24D459-DBA9-4BC7-8EF4-0526D3F041F5}
+		{5B0BE5B3-CE46-4AA8-A8BD-9596A1549A0F} = {BA24D459-DBA9-4BC7-8EF4-0526D3F041F5}
+		{901D7A26-4B78-4663-83FF-83C3CC276299} = {5B0BE5B3-CE46-4AA8-A8BD-9596A1549A0F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B8105525-880D-46ED-A693-2A52F5655743}
