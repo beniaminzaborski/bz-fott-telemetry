@@ -10,17 +10,22 @@ namespace Bz.Fott.Telemetry.IntegrationAzFunctions;
 
 public class AddCheckpointIntegrationFunction
 {
-    const string checkpointsQueueName = "checkpoints";
+    const string checkpointsQueueName = "checkpoints-events-to-telemetry-service";
     readonly IMessageReceiver _receiver;
+    readonly ILogger _logger;
 
-    public AddCheckpointIntegrationFunction(IMessageReceiver receiver)
+    public AddCheckpointIntegrationFunction(
+        IMessageReceiver receiver,
+        ILogger logger)
     {
         _receiver = receiver;
+        _logger = logger;
     }
 
     [FunctionName("AddCheckpointFunction")]
     public Task Run([ServiceBusTrigger(checkpointsQueueName)] ServiceBusReceivedMessage message, CancellationToken cancellationToken)
     {
+        _logger.LogInformation("Run RegisterCompetitorFunction");
         return _receiver.HandleConsumer<CompetitionCheckpointAddedIntegrationEventConsumer>(checkpointsQueueName, message, cancellationToken);
     }
 }

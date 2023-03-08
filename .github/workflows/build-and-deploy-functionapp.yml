@@ -3,8 +3,6 @@ name: Build and deploy Azure Function App
 on:
   workflow_dispatch: {}
   push:
-    paths-ignore:
-      - ".github/workflows/build-and-deploy-telemetry-functionapp"
 
 env:
   AZURE_FUNCTIONAPP_NAME: ${{ vars.AZURE_FUNCTIONAPP_NAME }}
