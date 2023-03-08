@@ -26,6 +26,6 @@ public class Startup : FunctionsStartup
                 cfg.AddRequestClient<CompetitionCheckpointRemovedIntegrationEvent>(new Uri("queue:checkpoints-events-to-telemetry-service"));
                 cfg.AddRequestClient<CompetitorRegisteredIntegrationEvent>(new Uri("queue:registration-completed-events-to-telemetry-service"));
             },
-            "AzureWebJobsServiceBus");
+            "ServiceBusConnectionString");
     }
 }
