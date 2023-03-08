@@ -12,11 +12,11 @@ public class RemoveCheckpointIntegrationFunction
 {
     const string queueName = "checkpoints-events-to-telemetry-service";
     readonly IMessageReceiver _receiver;
-    readonly ILogger _logger;
+    readonly ILogger<RemoveCheckpointIntegrationFunction> _logger;
 
     public RemoveCheckpointIntegrationFunction(
         IMessageReceiver receiver,
-        ILogger logger)
+        ILogger<RemoveCheckpointIntegrationFunction> logger)
     {
         _receiver = receiver;
         _logger = logger;

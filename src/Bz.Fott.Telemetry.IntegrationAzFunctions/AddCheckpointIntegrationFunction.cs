@@ -12,11 +12,11 @@ public class AddCheckpointIntegrationFunction
 {
     const string checkpointsQueueName = "checkpoints-events-to-telemetry-service";
     readonly IMessageReceiver _receiver;
-    readonly ILogger _logger;
+    readonly ILogger<AddCheckpointIntegrationFunction> _logger;
 
     public AddCheckpointIntegrationFunction(
         IMessageReceiver receiver,
-        ILogger logger)
+        ILogger<AddCheckpointIntegrationFunction> logger)
     {
         _receiver = receiver;
         _logger = logger;

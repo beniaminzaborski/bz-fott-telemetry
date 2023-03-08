@@ -12,10 +12,11 @@ public class RegisterCompetitorIntegrationFunction
 {
     const string queueName = "registration-completed-events-to-telemetry-service";
     readonly IMessageReceiver _receiver;
-    readonly ILogger _logger;
+    readonly ILogger<RegisterCompetitorIntegrationFunction> _logger;
 
     public RegisterCompetitorIntegrationFunction(
-        IMessageReceiver receiver, ILogger logger)
+        IMessageReceiver receiver,
+        ILogger<RegisterCompetitorIntegrationFunction> logger)
     {
         _receiver = receiver;
         _logger = logger;
