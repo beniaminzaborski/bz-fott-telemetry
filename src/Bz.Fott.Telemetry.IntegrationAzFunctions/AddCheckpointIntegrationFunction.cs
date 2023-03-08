@@ -23,7 +23,7 @@ public class AddCheckpointIntegrationFunction
     }
 
     [FunctionName("AddCheckpointFunction")]
-    public Task Run([ServiceBusTrigger(checkpointsQueueName)] ServiceBusReceivedMessage message, CancellationToken cancellationToken)
+    public Task Run([ServiceBusTrigger(checkpointsQueueName, Connection = "ServiceBusConnectionString")] ServiceBusReceivedMessage message, CancellationToken cancellationToken)
     {
         _logger.LogInformation("Run RegisterCompetitorFunction");
         return _receiver.HandleConsumer<CompetitionCheckpointAddedIntegrationEventConsumer>(checkpointsQueueName, message, cancellationToken);
