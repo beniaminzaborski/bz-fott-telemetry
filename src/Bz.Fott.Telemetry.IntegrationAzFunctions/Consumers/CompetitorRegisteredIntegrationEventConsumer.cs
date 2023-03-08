@@ -1,11 +1,10 @@
-﻿using Bz.Fott.Administration.Application.Competitions;
-using Bz.Fott.Registration;
+﻿using Bz.Fott.Registration;
 using MassTransit;
 using System.Threading.Tasks;
 
 namespace Bz.Fott.Telemetry.IntegrationAzFunctions.Consumers;
 
-internal class CompetitorRegisteredIntegrationEventConsumer : IConsumer<CompetitorRegisteredIntegrationEvent>
+public class CompetitorRegisteredIntegrationEventConsumer : IConsumer<CompetitorRegisteredIntegrationEvent>
 {
     public async Task Consume(ConsumeContext<CompetitorRegisteredIntegrationEvent> context)
     {
