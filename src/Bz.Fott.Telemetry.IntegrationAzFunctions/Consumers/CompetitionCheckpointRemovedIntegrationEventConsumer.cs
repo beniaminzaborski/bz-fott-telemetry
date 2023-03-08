@@ -9,6 +9,5 @@ public class CompetitionCheckpointRemovedIntegrationEventConsumer : IConsumer<Co
     public async Task Consume(ConsumeContext<CompetitionCheckpointRemovedIntegrationEvent> context)
     {
         LogContext.Debug?.Log("Checkpoint removed: {CheckpointId}", context.Message.CheckpointId);
-
     }
 }

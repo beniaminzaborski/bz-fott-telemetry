@@ -22,9 +22,9 @@ public class Startup : FunctionsStartup
             .AddMassTransitForAzureFunctions(cfg =>
             {
                 cfg.AddConsumersFromNamespaceContaining<ConsumerNamespace>();
-                cfg.AddRequestClient<CompetitionCheckpointAddedIntegrationEvent>(new Uri("queue:checkpoints-events-to-telemetry-service"));
-                cfg.AddRequestClient<CompetitionCheckpointRemovedIntegrationEvent>(new Uri("queue:checkpoints-events-to-telemetry-service"));
-                cfg.AddRequestClient<CompetitorRegisteredIntegrationEvent>(new Uri("queue:registration-completed-events-to-telemetry-service"));
+                cfg.AddRequestClient<CompetitionCheckpointAddedIntegrationEvent>(new Uri($"queue:{AddCheckpointIntegrationFunction.QueueName}"));
+                cfg.AddRequestClient<CompetitionCheckpointRemovedIntegrationEvent>(new Uri($"queue:{RemoveCheckpointIntegrationFunction.QueueName}"));
+                cfg.AddRequestClient<CompetitorRegisteredIntegrationEvent>(new Uri($"queue:{RegisterCompetitorIntegrationFunction.QueueName}"));
             },
             "ServiceBusConnectionString");
     }

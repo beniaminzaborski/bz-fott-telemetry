@@ -10,7 +10,7 @@ namespace Bz.Fott.Telemetry.IntegrationAzFunctions;
 
 public class RemoveCheckpointIntegrationFunction
 {
-    const string queueName = "checkpoints-events-to-telemetry-service";
+    public const string QueueName = "remove-checkpoint-events-to-telemetry-service";
     readonly IMessageReceiver _receiver;
     readonly ILogger<RemoveCheckpointIntegrationFunction> _logger;
 
@@ -23,9 +23,9 @@ public class RemoveCheckpointIntegrationFunction
     }
 
     [FunctionName("RemoveCheckpointFunction")]
-    public Task Run([ServiceBusTrigger(queueName, Connection = "ServiceBusConnectionString")] ServiceBusReceivedMessage message, CancellationToken cancellationToken)
+    public Task Run([ServiceBusTrigger(QueueName, Connection = "ServiceBusConnectionString")] ServiceBusReceivedMessage message, CancellationToken cancellationToken)
     {
         _logger.LogInformation("Run RegisterCompetitorFunction");
-        return _receiver.HandleConsumer<CompetitionCheckpointRemovedIntegrationEventConsumer>(queueName, message, cancellationToken);
+        return _receiver.HandleConsumer<CompetitionCheckpointRemovedIntegrationEventConsumer>(QueueName, message, cancellationToken);
     }
 }
