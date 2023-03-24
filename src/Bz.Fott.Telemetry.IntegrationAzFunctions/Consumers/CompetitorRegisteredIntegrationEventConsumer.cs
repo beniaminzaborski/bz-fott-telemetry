@@ -29,7 +29,7 @@ public class CompetitorRegisteredIntegrationEventConsumer : IConsumer<Competitor
 
         var competitor = new Competitor
         {
-            Id = Guid.NewGuid(), // TODO: Get from Registr service (integration event)
+            Id = message.CompetitorId,
             Number = message.Number,
             CompetitionId = message.CompetitionId,
             FirstName = message.FirstName,

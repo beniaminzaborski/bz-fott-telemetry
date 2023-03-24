@@ -3,6 +3,7 @@
 namespace Bz.Fott.Registration;
 
 public sealed record CompetitorRegisteredIntegrationEvent(
+    Guid CompetitorId,
     Guid CompetitionId,
     string FirstName,
     string LastName,
