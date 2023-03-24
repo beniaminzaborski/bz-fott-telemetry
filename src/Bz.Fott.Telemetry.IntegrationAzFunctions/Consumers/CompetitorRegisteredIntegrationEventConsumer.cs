@@ -39,6 +39,6 @@ public class CompetitorRegisteredIntegrationEventConsumer : IConsumer<Competitor
             PhoneNumber = message.PhoneNumber
         };
 
-        ItemResponse<Competitor> item = await _container.CreateItemAsync(competitor);
+        await _container.CreateItemAsync(competitor);
     }
 }
