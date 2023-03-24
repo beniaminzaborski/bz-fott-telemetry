@@ -3,7 +3,9 @@ using Bz.Fott.Registration;
 using Bz.Fott.Telemetry.IntegrationAzFunctions;
 using Bz.Fott.Telemetry.IntegrationAzFunctions.Consumers;
 using MassTransit;
+using Microsoft.Azure.Cosmos.Fluent;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
@@ -26,6 +28,16 @@ public class Startup : FunctionsStartup
                 cfg.AddRequestClient<CompetitionCheckpointRemovedIntegrationEvent>(new Uri($"queue:{RemoveCheckpointIntegrationFunction.QueueName}"));
                 cfg.AddRequestClient<CompetitorRegisteredIntegrationEvent>(new Uri($"queue:{RegisterCompetitorIntegrationFunction.QueueName}"));
             },
-            "ServiceBusConnectionString");
+            "ServiceBusConnectionString")
+            .AddSingleton(sp => 
+            {
+                var cosmosDbConnectionString = sp.GetRequiredService<IConfiguration>().GetConnectionStringOrSetting("CosmosConnectionString");
+                CosmosClientBuilder cosmosClientBuilder = new CosmosClientBuilder(cosmosDbConnectionString);
+
+                return cosmosClientBuilder.WithConnectionModeDirect()
+                    .WithApplicationRegion("North Europe")
+                    .WithBulkExecution(true)
+                    .Build();
+            });
     }
 }
