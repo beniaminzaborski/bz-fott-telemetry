@@ -2,8 +2,6 @@
 using Bz.Fott.Telemetry.IntegrationAzFunctions.Model;
 using MassTransit;
 using Microsoft.Azure.Cosmos;
-using System;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace Bz.Fott.Telemetry.IntegrationAzFunctions.Consumers;

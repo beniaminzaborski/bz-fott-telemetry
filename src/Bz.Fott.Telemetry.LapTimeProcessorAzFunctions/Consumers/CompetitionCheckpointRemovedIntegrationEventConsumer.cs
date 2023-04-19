@@ -22,6 +22,6 @@ public class CompetitionCheckpointRemovedIntegrationEventConsumer : IConsumer<Co
 
         LogContext.Debug?.Log("Checkpoint removed: {CheckpointId}", message.CheckpointId);
 
-        await _container.DeleteItemAsync<CheckPoint>(message.CheckpointId.ToString(), new PartitionKey(message.CompetitionId.ToString()));
+        await _container.DeleteItemAsync<CheckPoint>(message.CheckpointId.ToString(), new PartitionKey(message.CheckpointId.ToString()));
     }
 }

@@ -6,7 +6,7 @@ on:
 
 env:
   AZURE_FUNCTIONAPP_NAME: ${{ vars.AZURE_FUNCTIONAPP_NAME }}
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'src/Bz.Fott.Telemetry.IntegrationAzFunctions'
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'src/Bz.Fott.Telemetry.LapTimeProcessorAzFunctions'
   AZURE_FUNCTIONAPP_PUBLISH_PROFILE: ${{ secrets.AZURE_FUNCAPP_PUBLISH_PROFILE }}
   DOTNET_VERSION: '6.0'
   CONFIGURATION: Release
@@ -25,10 +25,10 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
     
     - name: Restore
-      run: dotnet restore "${{ env.WORKING_DIRECTORY }}/src/Bz.Fott.Telemetry.IntegrationAzFunctions/"
+      run: dotnet restore "${{ env.WORKING_DIRECTORY }}/src/Bz.Fott.Telemetry.LapTimeProcessorAzFunctions/"
 
     - name: Build
-      run: dotnet build "${{ env.WORKING_DIRECTORY }}/src/Bz.Fott.Telemetry.IntegrationAzFunctions/" --configuration ${{ env.CONFIGURATION }} --no-restore --output '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
+      run: dotnet build "${{ env.WORKING_DIRECTORY }}/src/Bz.Fott.Telemetry.LapTimeProcessorAzFunctions/" --configuration ${{ env.CONFIGURATION }} --no-restore --output '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
 
     - name: 'Run Azure Functions Action'
       uses: Azure/functions-action@v1

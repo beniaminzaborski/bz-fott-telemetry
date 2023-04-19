@@ -2,6 +2,7 @@
 using Bz.Fott.Registration;
 using Bz.Fott.Telemetry.IntegrationAzFunctions;
 using Bz.Fott.Telemetry.IntegrationAzFunctions.Consumers;
+using Bz.Fott.Telemetry.LapTimeProcessorAzFunctions;
 using MassTransit;
 using Microsoft.Azure.Cosmos.Fluent;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
@@ -22,6 +23,7 @@ public class Startup : FunctionsStartup
             .AddScoped<RemoveCheckpointIntegrationFunction>()
             .AddScoped<RegisterCompetitorIntegrationFunction>()
             .AddScoped<LapTimeReaderFunction>()
+            .AddScoped<CompetitorTimeProcessorFunction>()
             .AddMassTransitForAzureFunctions(cfg =>
             {
                 cfg.AddConsumersFromNamespaceContaining<ConsumerNamespace>();

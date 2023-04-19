@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BA24D459-DBA
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{63A9F797-EA81-4035-ADA7-1F1AE7A413FE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bz.Fott.Telemetry.IntegrationAzFunctions", "src\Bz.Fott.Telemetry.IntegrationAzFunctions\Bz.Fott.Telemetry.IntegrationAzFunctions.csproj", "{DD51C4CB-A63D-4D17-935B-68353A1E4A4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bz.Fott.Telemetry.LapTimeProcessorAzFunctions", "src\Bz.Fott.Telemetry.LapTimeProcessorAzFunctions\Bz.Fott.Telemetry.LapTimeProcessorAzFunctions.csproj", "{DD51C4CB-A63D-4D17-935B-68353A1E4A4F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{5B0BE5B3-CE46-4AA8-A8BD-9596A1549A0F}"
 EndProject
@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\build-and-deploy-functionapp.yml = .github\workflows\build-and-deploy-functionapp.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bz.Fott.Telemetry.IoTEventsProducer", "src\Bz.Fott.Telemetry.IoTEventsProducer\Bz.Fott.Telemetry.IoTEventsProducer.csproj", "{37694EB2-61E4-4788-B5B4-76ECE218F410}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bz.Fott.Telemetry.IoTEventsProducer", "src\Bz.Fott.Telemetry.IoTEventsProducer\Bz.Fott.Telemetry.IoTEventsProducer.csproj", "{37694EB2-61E4-4788-B5B4-76ECE218F410}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
