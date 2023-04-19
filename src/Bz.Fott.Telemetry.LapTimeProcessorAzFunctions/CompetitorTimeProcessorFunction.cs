@@ -7,25 +7,25 @@ namespace Bz.Fott.Telemetry.LapTimeProcessorAzFunctions;
 
 public class CompetitorTimeProcessorFunction
 {
-    public CompetitorTimeProcessorFunction()
-    {
+    //public CompetitorTimeProcessorFunction()
+    //{
         
-    }
+    //}
 
-    [FunctionName("CompetitorTimeProcessorFunction")]
-    public void Run([CosmosDBTrigger(
-        databaseName: "fott_telemetry",
-        collectionName: "LapTimes",
-        ConnectionStringSetting = "",
-        LeaseCollectionName = "leases")]IReadOnlyList<Document> input,
-        ILogger log)
-    {
-        if (input != null && input.Count > 0)
-        {
-            // TODO: Check if competition & competitor exist!
+    //[FunctionName("CompetitorTimeProcessorFunction")]
+    //public void Run([CosmosDBTrigger(
+    //    databaseName: "fott_telemetry",
+    //    collectionName: "LapTimes",
+    //    ConnectionStringSetting = "",
+    //    LeaseCollectionName = "leases")]IReadOnlyList<Document> input,
+    //    ILogger log)
+    //{
+    //    if (input != null && input.Count > 0)
+    //    {
+    //        // TODO: Check if competition & competitor exist!
 
-            log.LogInformation("Documents modified " + input.Count);
-            log.LogInformation("First document Id " + input[0].Id);
-        }
-    }
+    //        log.LogInformation("Documents modified " + input.Count);
+    //        log.LogInformation("First document Id " + input[0].Id);
+    //    }
+    //}
 }
