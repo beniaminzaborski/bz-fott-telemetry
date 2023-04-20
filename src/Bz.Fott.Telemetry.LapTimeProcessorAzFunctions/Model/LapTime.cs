@@ -3,7 +3,7 @@ using System;
 
 namespace Bz.Fott.Telemetry.IntegrationAzFunctions.Model;
 
-internal class LapTime
+public class LapTime
 {
     [JsonProperty("id")]
     public Guid Id { get; set; }
