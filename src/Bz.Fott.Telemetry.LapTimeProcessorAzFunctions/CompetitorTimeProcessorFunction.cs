@@ -16,7 +16,7 @@ public class CompetitorTimeProcessorFunction
     public void Run([CosmosDBTrigger(
         databaseName: "fott_telemetry",
         collectionName: "LapTimes",
-        ConnectionStringSetting = "",
+        ConnectionStringSetting = "CosmosConnectionString",
         LeaseCollectionName = "leases")]IReadOnlyList<Document> input,
         ILogger log)
     {
