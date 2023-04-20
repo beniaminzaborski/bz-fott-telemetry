@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Bz.Fott.Telemetry.IntegrationAzFunctions;
 using Bz.Fott.Telemetry.IntegrationAzFunctions.Model;
 using Microsoft.Azure.Cosmos;
-using Microsoft.Azure.Documents;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 
@@ -28,12 +26,18 @@ public class CompetitorTimeProcessorFunction
     }
 
     [FunctionName("CompetitorTimeProcessorFunction")]
+    //public async Task Run([CosmosDBTrigger(
+    //    databaseName: "fott_telemetry",
+    //    collectionName: "LapTimes",
+    //    ConnectionStringSetting = "CosmosConnectionString",
+    //    LeaseCollectionName = "leases",
+    //    CreateLeaseCollectionIfNotExists = true)]IReadOnlyList<LapTime> input)
     public async Task Run([CosmosDBTrigger(
         databaseName: "fott_telemetry",
-        collectionName: "LapTimes",
-        ConnectionStringSetting = "CosmosConnectionString",
-        LeaseCollectionName = "leases",
-        CreateLeaseCollectionIfNotExists = true)]IReadOnlyList<LapTime> input)
+        containerName: "LapTimes",
+        Connection = "CosmosConnectionString",
+        LeaseContainerName = "leases",
+        CreateLeaseContainerIfNotExists = true)]IReadOnlyList<LapTime> input)
     {
         if (input != null && input.Count > 0)
         {
