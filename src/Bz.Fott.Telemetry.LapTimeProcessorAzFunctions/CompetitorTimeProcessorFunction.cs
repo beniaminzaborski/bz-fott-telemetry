@@ -89,7 +89,7 @@ public class CompetitorTimeProcessorFunction
             return false;        
         }
 
-        var competitorResponse = await _checkpointsContainer.ReadItemAsync<Competitor>(
+        var competitorResponse = await _competitorsContainer.ReadItemAsync<Competitor>(
             competitorStringId,
             new Microsoft.Azure.Cosmos.PartitionKey(competitorStringId));
 
