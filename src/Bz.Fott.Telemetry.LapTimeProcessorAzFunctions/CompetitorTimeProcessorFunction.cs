@@ -17,7 +17,8 @@ public class CompetitorTimeProcessorFunction
         databaseName: "fott_telemetry",
         collectionName: "LapTimes",
         ConnectionStringSetting = "CosmosConnectionString",
-        LeaseCollectionName = "leases")]IReadOnlyList<Document> input,
+        LeaseCollectionName = "leases",
+        CreateLeaseCollectionIfNotExists = true)]IReadOnlyList<Document> input,
         ILogger log)
     {
         if (input != null && input.Count > 0)
