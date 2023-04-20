@@ -23,7 +23,7 @@ public class Startup : FunctionsStartup
             .AddScoped<RemoveCheckpointIntegrationFunction>()
             .AddScoped<RegisterCompetitorIntegrationFunction>()
             .AddScoped<LapTimeReaderFunction>()
-            //.AddScoped<CompetitorTimeProcessorFunction>()
+            .AddScoped<CompetitorTimeProcessorFunction>()
             .AddMassTransitForAzureFunctions(cfg =>
             {
                 cfg.AddConsumersFromNamespaceContaining<ConsumerNamespace>();
