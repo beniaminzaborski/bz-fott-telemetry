@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Bz.Fott.Telemetry.IntegrationAzFunctions.Model;
-using Bz.Fott.Telemetry.LapTimeProcessorAzFunctions.IntegrationEvents;
+using Bz.Fott.Telemetry.IntegrationEvents;
 using MassTransit;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.WebJobs;
