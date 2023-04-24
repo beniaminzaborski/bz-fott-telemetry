@@ -1,6 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Bz.Fott.Telemetry.IntegrationAzFunctions.Model;
+using Bz.Fott.Telemetry.LapTimeProcessorAzFunctions.IntegrationEvents;
+using MassTransit;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
@@ -13,16 +16,19 @@ public class CompetitorTimeProcessorFunction
     private readonly Container _checkpointsContainer;
     private readonly Container _competitorsContainer;
     private readonly Container _lapTimesContainer;
+    private readonly IPublishEndpoint _publishEndpoint;
 
     public CompetitorTimeProcessorFunction(
         ILogger<CompetitorTimeProcessorFunction> logger,
-        CosmosClient cosmosClient)
+        CosmosClient cosmosClient,
+        IPublishEndpoint publishEndpoint)
     {
         _logger = logger;
         var database = cosmosClient.GetDatabase("fott_telemetry");
         _checkpointsContainer = database.GetContainer("Checkpoints");
         _competitorsContainer = database.GetContainer("Competitors");
         _lapTimesContainer = database.GetContainer("LapTimes");
+        _publishEndpoint = publishEndpoint;
     }
 
     [FunctionName("CompetitorTimeProcessorFunction")]
@@ -68,6 +74,9 @@ public class CompetitorTimeProcessorFunction
         // TODO: Check if all LapTimes for all Checkpoints exists
 
         // TODO: Calculate overall competitor time
+
+        // TODO: Publish Azure Message Bus integration Event with overall time!
+        await _publishEndpoint.Publish(new CompetitorTimeCalculatedIntegrationEvent(lapTime.CompetitorId, new TimeSpan(2, 09, 12)));
     }
 
     private async Task<bool> ValidateItemAsync(LapTime lapTime)
@@ -78,6 +87,7 @@ public class CompetitorTimeProcessorFunction
         var checkPointStringId = lapTime.CheckPointId.ToString();
         var competitorStringId = lapTime.CompetitorId.ToString();
 
+        // TODO: Handle exception
         var checkPointResponse = await _checkpointsContainer.ReadItemAsync<CheckPoint>(
             checkPointStringId,
             new Microsoft.Azure.Cosmos.PartitionKey(checkPointStringId));
@@ -89,6 +99,7 @@ public class CompetitorTimeProcessorFunction
             return false;        
         }
 
+        // TODO: Handle exception
         var competitorResponse = await _competitorsContainer.ReadItemAsync<Competitor>(
             competitorStringId,
             new Microsoft.Azure.Cosmos.PartitionKey(competitorStringId));
