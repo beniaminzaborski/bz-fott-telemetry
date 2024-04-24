@@ -12,7 +12,7 @@ internal class Program
         Console.ReadLine();
 
         // number of events to be sent to the event hub
-        int numOfEvents = 3;
+        //int numOfEvents = 3;
 
         // The Event Hubs client types are safe to cache and use as a singleton for the lifetime
         // of the application, which is best practice when events are being published or read regularly.
@@ -23,23 +23,38 @@ internal class Program
 
         // Create a batch of events 
         using EventDataBatch eventBatch = await producerClient.CreateBatchAsync();
-
-        for (int i = 1; i <= numOfEvents; i++)
+        var @eventStartLine = CreateEventForStartLine();
+        if (!eventBatch.TryAdd(new EventData(SerializeEvent(@eventStartLine))))
         {
-            var @event = CreateEvent();
-
-            if (!eventBatch.TryAdd(new EventData(SerializeEvent(@event)/*Encoding.UTF8.GetBytes($"Event {i}")*/)))
-            {
-                // if it is too large for the batch
-                throw new Exception($"Event {i} is too large for the batch and cannot be sent.");
-            }
+            // if it is too large for the batch
+            throw new Exception($"Event is too large for the batch and cannot be sent.");
         }
+
+        var @eventFinishLine = CreateEventForFinishLine();
+        if (!eventBatch.TryAdd(new EventData(SerializeEvent(@eventFinishLine))))
+        {
+            // if it is too large for the batch
+            throw new Exception($"Event is too large for the batch and cannot be sent.");
+        }
+
+
+        //for (int i = 1; i <= numOfEvents; i++)
+        //{
+        //    var @event = CreateEvent();
+
+        //    if (!eventBatch.TryAdd(new EventData(SerializeEvent(@event)/*Encoding.UTF8.GetBytes($"Event {i}")*/)))
+        //    {
+        //        // if it is too large for the batch
+        //        throw new Exception($"Event {i} is too large for the batch and cannot be sent.");
+        //    }
+        //}
+
 
         try
         {
             // Use the producer client to send the batch of events to the event hub
             await producerClient.SendAsync(eventBatch);
-            Console.WriteLine($"A batch of {numOfEvents} events has been published.");
+            Console.WriteLine($"A batch of {eventBatch.Count} events has been published.");
         }
         finally
         {
@@ -50,12 +65,30 @@ internal class Program
         Console.ReadLine();
     }
 
-    private static LapTimeEvent CreateEvent()
+    //private static LapTimeEvent CreateEvent()
+    //{
+    //    return new LapTimeEvent(
+    //        Guid.NewGuid(),
+    //        new Guid("6dadf095-ad0e-425a-8fb3-082e58c14d2b"),
+    //        new Guid("1ec61d87-9a77-4208-a8f9-0c6b58968d29"),
+    //        DateTime.UtcNow);
+    //}
+
+    private static LapTimeEvent CreateEventForStartLine()
     {
         return new LapTimeEvent(
             Guid.NewGuid(),
+            new Guid("6dadf095-ad0e-425a-8fb3-082e58c14d2b"),
+            new Guid("1ec61d87-9a77-4208-a8f9-0c6b58968d29"),
+            DateTime.UtcNow.AddHours(-2).AddMinutes(-3));
+    }
+
+    private static LapTimeEvent CreateEventForFinishLine()
+    {
+        return new LapTimeEvent(
             Guid.NewGuid(),
-            Guid.NewGuid(),
+            new Guid("6dadf095-ad0e-425a-8fb3-082e58c14d2b"),
+            new Guid("1ec61d87-9a77-4208-a8f9-0c6b58968d29"),
             DateTime.UtcNow);
     }
 
